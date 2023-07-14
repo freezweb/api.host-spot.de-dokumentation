@@ -1,0 +1,767 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "Host Spot API Server",
+    "url" : "https://api.host-spot.de/1.0.1/"
+  } ],
+  "info" : {
+    "version" : "1.0.1",
+    "title" : "host-spot.de API",
+    "description" : "The API for all of host-spot.de"
+  },
+  "paths" : {
+    "/system/ping" : {
+      "get" : {
+        "tags" : [ "Systemcommands" ],
+        "operationId" : "getPing",
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Api-Ping"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "Systemcommands"
+      }
+    },
+    "/accounting/balancea" : {
+      "get" : {
+        "tags" : [ "Accounting" ],
+        "operationId" : "getBalance",
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Balance-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "Accounting"
+      }
+    },
+    "/vserver/calculate" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "calculate",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/setvm"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/calculate-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/producttypes" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "getproducttypes",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/types"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/calculate-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/buy" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "buy",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/setvm"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createvm-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/taskstatus" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "taskstatus",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/vmtask_id"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/vmtask-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/data" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "data",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/vmident"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/vmdata-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/list" : {
+      "get" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/list-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    },
+    "/vserver/delete" : {
+      "post" : {
+        "tags" : [ "V-Server" ],
+        "operationId" : "delete",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/vm-delete"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/delete-response"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/error"
+          }
+        },
+        "x-swagger-router-controller" : "V-Server"
+      }
+    }
+  },
+  "security" : [ {
+    "ApiKeyAuth" : [ ]
+  } ],
+  "components" : {
+    "securitySchemes" : {
+      "ApiKeyAuth" : {
+        "type" : "apiKey",
+        "in" : "header",
+        "name" : "X-API-Key"
+      }
+    },
+    "responses" : {
+      "error" : {
+        "description" : "Errordetails in Message and Statuscode",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "schemas" : {
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "error" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "required" : [ "code", "message" ]
+      },
+      "Api-Ping" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "ping" : {
+            "default" : "pong",
+            "type" : "string"
+          }
+        }
+      },
+      "Balance-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "balance" : {
+            "$ref" : "#/components/schemas/Balance"
+          }
+        }
+      },
+      "Balance" : {
+        "type" : "object",
+        "properties" : {
+          "customer_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 123
+          },
+          "invoices" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "payments" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "credits" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "total" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "creditlimit" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "totalbalance" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          }
+        }
+      },
+      "setvm" : {
+        "type" : "object",
+        "properties" : {
+          "cpu" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 4
+          },
+          "ram" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 12
+          },
+          "hdd" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 32
+          },
+          "ip" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 16
+          },
+          "backup" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 17
+          },
+          "gpu" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 23
+          },
+          "os" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 39
+          },
+          "lang" : {
+            "type" : "string",
+            "default" : "deutsch",
+            "enum" : [ "deutsch", "english" ]
+          },
+          "paymentperiod" : {
+            "type" : "string",
+            "default" : "month",
+            "enum" : [ "day", "week", "month", "year" ]
+          }
+        }
+      },
+      "calculate-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "calculated" : {
+            "$ref" : "#/components/schemas/calculate-calculated"
+          }
+        }
+      },
+      "calculate-calculated" : {
+        "type" : "object",
+        "properties" : {
+          "positions" : {
+            "$ref" : "#/components/schemas/calculate-positions"
+          },
+          "summary" : {
+            "$ref" : "#/components/schemas/calculate-summarys"
+          },
+          "valid" : {
+            "type" : "boolean",
+            "default" : true
+          },
+          "buyable" : {
+            "type" : "boolean",
+            "default" : true
+          }
+        }
+      },
+      "calculate-positions" : {
+        "type" : "object",
+        "properties" : {
+          "cpu" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "ram" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "hdd" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "ip" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "backup" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "gpu" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          },
+          "os" : {
+            "$ref" : "#/components/schemas/calculate-position"
+          }
+        }
+      },
+      "calculate-position" : {
+        "type" : "object",
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "setup" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "periodicle" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          }
+        }
+      },
+      "calculate-summarys" : {
+        "type" : "object",
+        "properties" : {
+          "montly" : {
+            "$ref" : "#/components/schemas/calculate-summary"
+          },
+          "setup" : {
+            "$ref" : "#/components/schemas/calculate-summary"
+          }
+        }
+      },
+      "calculate-summary" : {
+        "type" : "object",
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "sum" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "tax" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          },
+          "total" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 123.45
+          }
+        }
+      },
+      "types" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "enum" : [ "cpu", "ram", "hdd", "ip", "backup", "gpu", "os" ]
+          }
+        }
+      },
+      "createvm-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "vmtask_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          }
+        }
+      },
+      "vmtask_id" : {
+        "type" : "object",
+        "properties" : {
+          "vmtask_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          }
+        }
+      },
+      "vmtask-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "task" : {
+            "$ref" : "#/components/schemas/vmtask-task"
+          }
+        }
+      },
+      "vmtask-task" : {
+        "type" : "object",
+        "properties" : {
+          "vmtask_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          },
+          "user_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          },
+          "vmident" : {
+            "type" : "string",
+            "default" : "vm-xxxxx"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss"
+          },
+          "status" : {
+            "type" : "string",
+            "default" : "finish"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        }
+      },
+      "vmident" : {
+        "type" : "object",
+        "properties" : {
+          "vmident" : {
+            "type" : "string",
+            "default" : "vm-xxxxx"
+          }
+        }
+      },
+      "vmdata-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "vmdata" : {
+            "$ref" : "#/components/schemas/vmdata"
+          }
+        }
+      },
+      "vmdata" : {
+        "type" : "object",
+        "properties" : {
+          "vmident" : {
+            "type" : "string",
+            "default" : "vm-xxxxx"
+          },
+          "kunden_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          },
+          "ipv6" : {
+            "type" : "string",
+            "default" : "0000:0000:0000:0000:0000:0000:0000:0000"
+          },
+          "ipv4" : {
+            "type" : "string",
+            "default" : "000.000.000.000"
+          },
+          "os_id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1234
+          },
+          "hostname" : {
+            "type" : "string",
+            "default" : "vm-xxxxx"
+          },
+          "lastpayment" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss"
+          },
+          "nextpayment" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss"
+          },
+          "paymentperiod" : {
+            "type" : "string",
+            "default" : "month",
+            "enum" : [ "day", "week", "month", "year" ]
+          },
+          "deleteat" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss"
+          },
+          "vmmac" : {
+            "type" : "string",
+            "default" : "00:00:00:00:00:00"
+          },
+          "vmname" : {
+            "type" : "string",
+            "default" : "KD_x_yyyy"
+          },
+          "installing" : {
+            "type" : "boolean",
+            "default" : false
+          },
+          "vmdata" : {
+            "$ref" : "#/components/schemas/vmdata-installdata"
+          }
+        }
+      },
+      "vmdata-installdata" : {
+        "type" : "object",
+        "properties" : {
+          "user" : {
+            "type" : "string",
+            "default" : "root"
+          },
+          "password" : {
+            "type" : "string",
+            "default" : "insecure"
+          }
+        }
+      },
+      "vm-delete" : {
+        "type" : "object",
+        "properties" : {
+          "vmident" : {
+            "type" : "string",
+            "default" : "vm-xxxxx"
+          },
+          "datetime" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss"
+          },
+          "early" : {
+            "type" : "boolean",
+            "default" : false,
+            "description" : "to delete the machine before end of the payment period without refund"
+          }
+        }
+      },
+      "list-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "vmident" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "default" : "vm-xxxxx"
+            }
+          }
+        }
+      },
+      "delete-response" : {
+        "type" : "object",
+        "properties" : {
+          "servertime" : {
+            "type" : "integer",
+            "format" : "int64",
+            "default" : 1688621003
+          },
+          "datetime" : {
+            "type" : "string",
+            "default" : "yyyy-mm-dd hh:ii:ss",
+            "description" : "Actual Confirmed Termination Date"
+          }
+        }
+      }
+    }
+  }
+}
