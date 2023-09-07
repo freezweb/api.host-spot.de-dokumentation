@@ -32,7 +32,7 @@
         "x-swagger-router-controller" : "Systemcommands"
       }
     },
-    "/accounting/balancea" : {
+    "/accounting/balance" : {
       "get" : {
         "tags" : [ "Accounting" ],
         "operationId" : "getBalance",
